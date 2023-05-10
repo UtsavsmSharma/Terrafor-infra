@@ -1,0 +1,15 @@
+{
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Principal": {
+            "AWS": "111122223333" #user account id 
+         },
+         "Action": "sns:Subscribe",
+         "Resource": "arn:aws:sns:us-east-2:123456789012:MyTopic" # topic arn 
+      }
+   ]
+}
+
+
+This policy can be used if we want sns to work with sqs 
