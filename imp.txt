@@ -13,3 +13,16 @@
 
 
 This policy can be used if we want sns to work with sqs 
+
+
+Also before runnig code add cred.tf file 
+
+variable "aws_access_key" {
+default = "paste your acess key here "
+}
+variable "aws_secret_key" {
+default = "Place your secret key here"
+}
+variable "aws_region" {
+default = "us-east-1"
+}
