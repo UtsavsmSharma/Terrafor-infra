@@ -59,8 +59,17 @@ module "storage-resources" {
    name = module.network-resources.public_subnet_id
    ec2_id  = module.ec2-resources.ec2_id
 }
+
+module "sqs" {
+  source = "./sqs"
+  sqs_arn = module.sqs.sqs_arn
+  sns_topic_arn =  module.sns.sns_topic_arn
+}
+
 module "sns" {
   source = "./sns"
   # aws_sns_arn = module.sns.aws_sns_arn
+  sqs_arn = module.sqs.sqs_arn
+  sns_topic_arn = module.sns.sns_topic_arn
   
 }
