@@ -7,7 +7,20 @@ terraform {
   }
 }
 
+provider "aws" {
+  # access_key = var.aws_access_key
+  # secret_key = var.aws_secret_key
+  profile = "default"
+  region  = "us-west-2"
+  # alias   = "us-east-1"
+}
 
+# provider "aws" {
+#   profile = "default"
+#   region  = "us-east-2 "
+#   alias   = "us-east-2"
+
+# }
 
 
 resource "aws_key_pair" "example" {

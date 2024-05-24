@@ -26,3 +26,25 @@ default = "Place your secret key here"
 variable "aws_region" {
 default = "us-east-1"
 }
+
+### Configuring terraform to ask region during plan 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
+variable "region" {
+  type = string
+
+
+}
+
+provider "aws" {
+  profile = "default"
+  region  = var.region
+
+}
