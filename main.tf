@@ -11,7 +11,7 @@ provider "aws" {
   # access_key = var.aws_access_key
   # secret_key = var.aws_secret_key
   profile = "default"
-  region  = "us-west-2"
+  region  = "us-west-1"
   # alias   = "us-east-1"
 }
 
@@ -68,7 +68,8 @@ module "storage-resources" {
   name   = module.network-resources.public_subnet_id
   ec2_id = module.ec2-resources.ec2_id
 }
-
+#commentiing stash 
+#coming from feature 
 module "sqs" {
   source        = "./sqs"
   sqs_arn       = module.sqs.sqs_arn
