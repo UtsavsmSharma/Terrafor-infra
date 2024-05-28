@@ -22,7 +22,7 @@ resource "aws_instance" "webserver-ec2" {
   instance_type = var.instance_type
   vpc_security_group_ids = [var.security_group_id]
   subnet_id     = var.public_subnet_id
-  availability_zone = "us-east-1a"
+  
   #  provider = aws.us-east-1
   tags = {
     Name = "web_server-ec2"

@@ -65,3 +65,10 @@ resource "aws_security_group" "example" {
     cidr_blocks = var.environment == "production" ? [var.production_subnet_cidr] : [var.development_subnet_cidr]
   }
 }
+
+we can aldo declare variable as 
+variable region{}
+
+provider aws {
+  region = var.region
+}

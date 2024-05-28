@@ -6,7 +6,7 @@ terraform {
     }
   }
 }
-
+variable "region" {}
 provider "aws" {
   # access_key = var.aws_access_key
   # secret_key = var.aws_secret_key
@@ -23,26 +23,26 @@ provider "aws" {
 # }
 
 
-resource "aws_key_pair" "example" {
-  key_name = "my-keypair" # Update with your desired key pair name
+# resource "aws_key_pair" "example" {
+#   key_name = "my-keypair" # Update with your desired key pair name
 
-  # Generate a new RSA key pair with 2048 bits
-  public_key = tls_private_key.example.public_key_openssh
-}
+#   # Generate a new RSA key pair with 2048 bits
+#   public_key = tls_private_key.example.public_key_openssh
+# }
 
-resource "tls_private_key" "example" {
-  algorithm = "RSA"
-  rsa_bits  = 2048
-}
+# resource "tls_private_key" "example" {
+#   algorithm = "RSA"
+#   rsa_bits  = 2048
+# }
 
-output "private_key_pem" {
-  value     = tls_private_key.example.private_key_pem
-  sensitive = true
-}
+# output "private_key_pem" {
+#   value     = tls_private_key.example.private_key_pem
+#   sensitive = true
+# }
 
-output "public_key_openssh" {
-  value = tls_private_key.example.public_key_openssh
-}
+# output "public_key_openssh" {
+#   value = tls_private_key.example.public_key_openssh
+# }
 
 module "network-resources" {
   source = "./network-resources"
@@ -68,18 +68,17 @@ module "storage-resources" {
   name   = module.network-resources.public_subnet_id
   ec2_id = module.ec2-resources.ec2_id
 }
-#commentiing stash 
-#coming from feature 
-module "sqs" {
-  source        = "./sqs"
-  sqs_arn       = module.sqs.sqs_arn
-  sns_topic_arn = module.sns.sns_topic_arn
-}
 
-module "sns" {
-  source = "./sns"
-  # aws_sns_arn = module.sns.aws_sns_arn
-  sqs_arn       = module.sqs.sqs_arn
-  sns_topic_arn = module.sns.sns_topic_arn
+# module "sqs" {
+#   source        = "./sqs"
+#   sqs_arn       = module.sqs.sqs_arn
+#   sns_topic_arn = module.sns.sns_topic_arn
+# }
 
-}
+# module "sns" {
+#   source = "./sns"
+#   # aws_sns_arn = module.sns.aws_sns_arn
+#   sqs_arn       = module.sqs.sqs_arn
+#   sns_topic_arn = module.sns.sns_topic_arn
+
+# }
