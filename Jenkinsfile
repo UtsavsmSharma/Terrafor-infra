@@ -17,11 +17,8 @@ pipeline {
 
         stage('Init') {
             steps {
-        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-    // some block
-                sh  ' terraform init '               
-        
-        } 
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'terraform init'
                 }
             }
         }
@@ -39,7 +36,7 @@ pipeline {
         stage('Apply') {
             steps {
                 script {
-                    withAWS(credentials: jenkins', region: "${env.AWS_REGION}") {
+                    withAWS(credentials: 'jenkins', region: "${env.AWS_REGION}") {
                         sh 'terraform apply -auto-approve tfplan'
                     }
                 }
