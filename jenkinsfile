@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_REPO_URL = 'https://github.com/your-repo/your-project.git'
+        GIT_BRANCH = 'main'
+        // Add other environment variables if necessary
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clean the workspace before starting
+                cleanWs()
+
+                // Clone the Git repository
+                git url: "${env.GIT_REPO_URL}", branch: "${env.GIT_BRANCH}"
+            }
+        }
+
+        stage('Init') {
+            steps {
+                script {
+                    // Initialize Terraform or any other infrastructure tool
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Plan') {
+            steps {
+                script {
+                    // Run Terraform plan or any equivalent
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+
+        stage('Apply') {
+            steps {
+                script {
+                    // Apply the plan
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup workspace after the build
+            cleanWs()
+        }
+        success {
+            echo 'Infrastructure applied successfully!'
+        }
+        failure {
+            echo 'There was an error in applying the infrastructure.'
+        }
+    }
+}
