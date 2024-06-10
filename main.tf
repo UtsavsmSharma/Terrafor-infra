@@ -6,21 +6,21 @@ terraform {
     }
   }
 }
-variable "region" {}
+# variable "region" {}
 provider "aws" {
   # access_key = var.aws_access_key
   # secret_key = var.aws_secret_key
   profile = "default"
   region  = "us-west-1"
-  # alias   = "us-east-1"
+  alias   = "us-west-1"
 }
 
-# provider "aws" {
-#   profile = "default"
-#   region  = "us-east-2 "
-#   alias   = "us-east-2"
+provider "aws" {
+  profile = "default"
+  region  = "us-east-1"
+  alias   = "us-east-1"
 
-# }
+}
 
 
 # resource "aws_key_pair" "example" {
@@ -82,3 +82,8 @@ module "storage-resources" {
 #   sns_topic_arn = module.sns.sns_topic_arn
 
 # }
+# resource "aws_s3_bucket" "my_bucket" {
+#   # Configuration will be filled in after import
+#   provider = aws.usw
+# }
+

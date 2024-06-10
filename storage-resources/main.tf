@@ -1,6 +1,6 @@
 resource "aws_ebs_volume" "my-ebs" {
    
-  availability_zone  = "us-west-1"
+   availability_zone  = "us-west-1a"
   size              = var.size
    
   tags = {
@@ -19,3 +19,5 @@ resource "aws_ebs_snapshot" "example_snapshot" {
     Name = "HelloWorld_snap"
   }
 }
+
+
