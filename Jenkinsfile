@@ -1,10 +1,11 @@
 pipeline {
     agent any
 
-    stages{
-        stage (init){
-
-            sh ' terraform init '
+    stages {
+        stage('Init') {
+            steps {
+                sh 'terraform init'
+            }
         }
     }
 }
