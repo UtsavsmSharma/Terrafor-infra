@@ -17,10 +17,11 @@ pipeline {
 
         stage('Init') {
             steps {
-                script {
-                    withAWS(credentials: 'jenkins', region: "${env.AWS_REGION}") {
-                        sh 'terraform init'
-                    }
+        withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+    // some block
+                sh  ' terraform init '               
+        
+        } 
                 }
             }
         }
