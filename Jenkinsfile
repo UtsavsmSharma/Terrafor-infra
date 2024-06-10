@@ -18,7 +18,7 @@ pipeline {
         stage('Init') {
             steps {
                 script {
-                    withAWS(credentials: 'aws-credentials', region: "${env.AWS_REGION}") {
+                    withAWS(credentials: 'jenkins', region: "${env.AWS_REGION}") {
                         sh 'terraform init'
                     }
                 }
@@ -28,7 +28,7 @@ pipeline {
         stage('Plan') {
             steps {
                 script {
-                    withAWS(credentials: 'aws-credentials', region: "${env.AWS_REGION}") {
+                    withAWS(credentials: 'jenkins', region: "${env.AWS_REGION}") {
                         sh 'terraform plan -out=tfplan'
                     }
                 }
@@ -38,7 +38,7 @@ pipeline {
         stage('Apply') {
             steps {
                 script {
-                    withAWS(credentials: 'aws-credentials', region: "${env.AWS_REGION}") {
+                    withAWS(credentials: jenkins', region: "${env.AWS_REGION}") {
                         sh 'terraform apply -auto-approve tfplan'
                     }
                 }
