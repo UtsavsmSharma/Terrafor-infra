@@ -15,7 +15,7 @@ pipeline {
                     sh "unzip -o terraform_${terraformVersion}_linux_amd64.zip"
                     sh 'chmod +x terraform'
                     sh ' whoami'
-                    sh 'mv terraform /usr/local/bin/terraform'
+                    sh 'sudo mv terraform /usr/local/bin/terraform'
                     sh 'terraform version'
                 }
             }
