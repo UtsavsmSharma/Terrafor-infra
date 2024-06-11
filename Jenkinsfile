@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git branch: 'main', credentialsId: 'a230f463-14da-408a-b511-4444cf2977fc', url: https://github.com/UtsavsmSharma/Terrafor-infra.git'
+                    git branch: 'main', credentialsId: 'a230f463-14da-408a-b511-4444cf2977fc', url: 'https://github.com/UtsavsmSharma/Terrafor-infra.git'
                 }
             }
         }
