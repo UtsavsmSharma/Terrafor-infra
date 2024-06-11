@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "my-tfstate-utsav"
-    # key    = "path/to/your/terraform.tfstate"
+    key    = "/tfstate"
     region = "us-west-2"
     encrypt = true
   }
