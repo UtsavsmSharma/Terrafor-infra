@@ -1,4 +1,4 @@
-pipeline {
+ipeline {
 
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
@@ -15,8 +15,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                          git branch: 'main', credentialsId: 'pat', url: 'https://github.com/UtsavsmSharma/Terraform-infra.git'
-
+                            git "https://github.com/UtsavsmSharma/Terrafor-infra.git"
                         }
                     }
                 }
@@ -47,7 +46,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan "
+                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
             }
         }
     }
