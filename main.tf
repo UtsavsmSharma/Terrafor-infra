@@ -14,13 +14,17 @@ terraform {
     encrypt = true
   }
 }
-# variable "region" {}
-provider "aws" {
-  # access_key = var.aws_access_key
-  # secret_key = var.aws_secret_key
-  profile = "default"
-  region  = "us-west-1"
-  alias   = "us-west-1"
+pipeline {
+    environment {
+        AWS_REGION = 'us-east-1' // Set your desired AWS region here
+    }
+    // Rest of your pipeline definition...
+}
+pipeline {
+    environment {
+        AWS_REGION = 'us-west-2' // Set your desired AWS region here
+    }
+    // Rest of your pipeline definition...
 }
 
 provider "aws" {
