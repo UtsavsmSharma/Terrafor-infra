@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Terraform init') {
             steps {
-                sh 'terraform init -input=false'
+                sh 'echo yes |terraform init '
             }
         }
         stage('Terraform apply') {
