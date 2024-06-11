@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/example/repository.git', branch: 'main'
+                script {
+                    git branch: 'main', credentialsId: 'a230f463-14da-408a-b511-4444cf2977fc', url: 'https://github.com/example/repository.git'
+                }
             }
         }
         stage('Terraform Plan') {
