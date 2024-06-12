@@ -11,8 +11,15 @@ pipeline {
         
         stage('Terraform Init') {
             steps {
-                // Initialize Terraform with automated "yes" response
-                sh 'echo yes | terraform init'
+                // Prompt for user input before running terraform init
+                script {
+                    def userInput = input(id: 'UserInput', message: 'Do you want to run terraform init?', parameters: [choice(name: 'Confirm', choices: ['yes', 'no'], description: 'Please select')])
+                    if (userInput == 'yes') {
+                        sh 'terraform init'
+                    } else {
+                        echo 'Skipping terraform init as per user request.'
+                    }
+                }
             }
         }
         
