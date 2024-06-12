@@ -15,7 +15,7 @@ pipeline {
                 script {
                     def userInput = input(id: 'UserInput', message: 'Do you want to run terraform init?', parameters: [choice(name: 'Confirm', choices: ['yes', 'no'], description: 'Please select')])
                     if (userInput == 'yes') {
-                        sh 'terraform init'
+                        sh 'terraform init -reconfigure'
                     } else {
                         echo 'Skipping terraform init as per user request.'
                     }
