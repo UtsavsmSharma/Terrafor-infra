@@ -23,18 +23,13 @@ pipeline {
             }
         }
         
-        stage('Terraform Apply') {
+        stage('Terraform Apply or destroy ') {
             steps {
                 // Apply the Terraform plan with auto-approve
-                sh 'terraform apply --auto-approve'
-            }
-        }
-        
-        stage('Terraform Destroy') {
-            steps {
-                // Destroy the Terraform-managed infrastructure with auto-approve
                 sh 'terraform $action --auto-approve'
             }
         }
+        
+        
     }
 }
