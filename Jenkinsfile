@@ -26,7 +26,7 @@ pipeline {
         stage('Terraform Destroy') {
             steps {
                 // Destroy the Terraform-managed infrastructure with auto-approve
-                sh 'terraform destroy --auto-approve'
+                sh 'terraform $action --auto-approve'
             }
         }
     }
